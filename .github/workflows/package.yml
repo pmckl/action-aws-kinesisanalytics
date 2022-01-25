@@ -25,22 +25,3 @@ jobs:
           git add dist/
           git commit -m "(chore) updating dist" || echo "No changes to commit"
           git push origin HEAD:main
-      - name: Check for tag
-        run: |
-          current_version=$(npm run version --loglevel silent)
-          echo "release_version=$current_version" >> $GITHUB_ENV
-          if [ $(git tag -l "v$version") ]; then
-              echo "skip_release=true" >> $GITHUB_ENV
-          fi
-      - name: Create Release
-        if: ${{ env.skip_release != 'true' }}
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: "v${{ env.release_version }}"
-          release_name: Release ${{ env.release_version }}
-          body: |
-            TBD
-          draft: false
-          prerelease: false
