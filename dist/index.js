@@ -68,8 +68,8 @@ function run() {
         //const applicationName = "tmp-app"
         // const ApplicationConfigurationUpdateFile = './updatefile-test.json'
         const region = core.getInput('region', { required: true });
-        const applicationName = core.getInput('application-name', { required: true });
-        const ApplicationConfigurationUpdateFile = core.getInput('application-configuration-update', { required: false });
+        const applicationName = core.getInput('application_name', { required: true });
+        const ApplicationConfigurationUpdateFile = core.getInput('application_configuration_update', { required: false });
         try {
             const client = new client_kinesis_analytics_v2_1.KinesisAnalyticsV2Client({ region: region });
             const DescribeApplicationCmd = new client_kinesis_analytics_v2_1.DescribeApplicationCommand({
@@ -91,7 +91,7 @@ function run() {
                     const UpdateApplicationResponse = yield client.send(UpdateApplicationCmd);
                     const UpdateApplicationDetail = UpdateApplicationResponse.ApplicationDetail;
                     const UpdateApplicationConfiguration = UpdateApplicationDetail.ApplicationConfigurationDescription;
-                    core.setOutput('application-configuration', JSON.stringify(UpdateApplicationConfiguration));
+                    core.setOutput('application_configuration', JSON.stringify(UpdateApplicationConfiguration));
                 }
                 catch (error) {
                     console.log('Failed to update application!');
@@ -100,7 +100,7 @@ function run() {
                 }
             }
             else {
-                core.setOutput('application-configuration', JSON.stringify(ApplicationConfiguration));
+                core.setOutput('application_configuration', JSON.stringify(ApplicationConfiguration));
             }
         }
         catch (error) {
