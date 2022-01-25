@@ -11,9 +11,9 @@ async function run(): Promise<void> {
   //const applicationName = "tmp-app"
   // const ApplicationConfigurationUpdateFile = './updatefile-test.json'
   const region = core.getInput('region', {required: true})
-  const applicationName = core.getInput('application-name', {required: true})
+  const applicationName = core.getInput('application_name', {required: true})
   const ApplicationConfigurationUpdateFile = core.getInput(
-    'application-configuration-update',
+    'application_configuration_update',
     {required: false}
   )
 
@@ -49,7 +49,7 @@ async function run(): Promise<void> {
         const UpdateApplicationConfiguration =
           UpdateApplicationDetail!.ApplicationConfigurationDescription
         core.setOutput(
-          'application-configuration',
+          'application_configuration',
           JSON.stringify(UpdateApplicationConfiguration)
         )
       } catch (error) {
@@ -58,7 +58,7 @@ async function run(): Promise<void> {
       }
     } else {
       core.setOutput(
-        'application-configuration',
+        'application_configuration',
         JSON.stringify(ApplicationConfiguration)
       )
     }
