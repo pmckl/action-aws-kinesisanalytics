@@ -25,3 +25,12 @@ jobs:
           git add dist/
           git commit -m "(chore) updating dist" || echo "No changes to commit"
           git push origin HEAD:main
+      - name: Check for tag
+        run: |
+          current_version=$(npm run version --loglevel silent)
+          if [ $(git tag -l "$version") ]; then
+              echo "skip_release=true" >> $GITHUB_ENV
+          fi
+      - name: Create Release
+        if: ${{ env.skip_release != 'true' }}
+        run: echo "do rls"
