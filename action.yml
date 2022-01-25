@@ -1,0 +1,15 @@
+name:  "action-aws-kinesisanalytics"
+description: "Github Action to describe or update AWS Kinesis Analytics Applications"
+author: "pmckl"
+inputs:
+  region:
+    required: true
+    description: 'AWS region'
+  application-name:
+    required: true
+    description: 'KDA Application name'
+  application-configuration-update:
+    description: 'Updatefile path'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
