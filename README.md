@@ -16,5 +16,10 @@ The format of the JSON file could be found here: https://docs.aws.amazon.com/cli
 ### Example
 
 ```yaml
-TBD
+- name: Describe application
+    uses: pmckl/action-aws-kinesisanalytics@main
+    id: describe_application
+    with:
+        region: ${{ env.region }}
+        application_name: ${{ env.application_name }}
 ```
